@@ -5,10 +5,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiApp1.Views"
     Shell.FlyoutBehavior="Disabled">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:ItemListView}"
-        Route="MainPage" />
-
+    <TabBar>
+        <Tab Title="Search" Icon="search_icon.png">
+            <ShellContent
+            Title="Search"
+            ContentTemplate="{DataTemplate local:ItemListView}"
+            Route="ItemListView" />
+        </Tab>
+        <Tab Title="User Shopping List" Icon="account_icon.png">
+            <ShellContent
+            Title="My List"
+            ContentTemplate="{DataTemplate local:UserItemListPage}"
+            Route="UserItemListPage" />
+        </Tab>
+    </TabBar>
 </Shell>
