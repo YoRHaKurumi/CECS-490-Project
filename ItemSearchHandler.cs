@@ -1,5 +1,5 @@
 ﻿
-using SmartCart.Models;
+using MauiApp1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,9 @@ namespace MauiApp1.SearchHandlers
     public class ItemSearchHandler: SearchHandler
     {
         public IList<ItemModel> Items { get; set; }
+        
+        public string NavigationRoute { get; set; }
+        public Type NavigationType { get; set; }
         protected override void OnQueryChanged(string oldValue, string newValue)
         {
             base.OnQueryChanged(oldValue, newValue);
@@ -24,9 +27,17 @@ namespace MauiApp1.SearchHandlers
                 ItemsSource = Items.Where(items => items.Name.ToLower().Contains(newValue.ToLower())).ToList();    
             }
         }
-        protected override void OnItemSelected(object item)
+        protected override async void OnItemSelected(object item)
         {
             base.OnItemSelected(item);
+            if(!string.IsNullOrWhiteSpace(NavigationRoute))
+            {
+                var navParam = new Dictionary<string, object> 
+                {
+                    {"ItemDetailObj", item }
+                };
+                await Shell.Current.GoToAsync(NavigationRoute,navParam );
+            }
         }
     }
 }

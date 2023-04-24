@@ -1,5 +1,5 @@
 using MauiApp1.ViewModels;
-using SmartCart.Models;
+using MauiApp1.Models;
 
 namespace MauiApp1.Views;
 
